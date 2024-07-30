@@ -50,7 +50,7 @@ public class PlayerInput : MonoBehaviour
 
     private void GetBodyMovement()
     {
-        Vector2 movementVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Vector2 movementVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")); //GetAxisRaw allow us to get the value between 1 & -1
         OnMoveBody?.Invoke(movementVector.normalized); //Prevent the faster movement when going diagonal 
     }
 }

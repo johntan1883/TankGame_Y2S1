@@ -4,45 +4,46 @@ using UnityEngine;
 
 public class TankController : MonoBehaviour
 {
-    public Rigidbody2D rb2d;
-    public Transform turretParent;
+    public TankMover TankMover;
+    public TurretAim TurretAim;
+    public Turret [] Turrets; //Using array allow the scenario when there are more than one turret on the tank to shoot at the same time
 
-    [SerializeField] private float maxMoveSpeed = 10f;
-    [SerializeField] private float rotationSpeed = 100f;
-    [SerializeField] private float turretRotationSpeed = 150f;
-    private Vector2 movementVector;
     
 
     private void Awake()
     {
-        rb2d = GetComponent<Rigidbody2D>();
-    }
+        if (TankMover == null)
+        {   
+            TankMover = GetComponentInChildren<TankMover>();
+        }
 
-    private void FixedUpdate()
-    {
-        rb2d.velocity = (Vector2)transform.up * movementVector.y * maxMoveSpeed * Time.fixedDeltaTime;
-        rb2d.MoveRotation(transform.rotation * Quaternion.Euler(0, 0, -movementVector.x * rotationSpeed * Time.fixedDeltaTime));
+        if (TurretAim == null)
+        {
+            TurretAim = GetComponentInChildren<TurretAim>();
+        }
+
+        if (Turrets == null || Turrets.Length == 0) //Getting the reference for the turrets on the tank
+        {
+            Turrets = GetComponentsInChildren<Turret>();
+        }
     }
 
     public void HandleShoot()
     {
-        Debug.Log("Shooting");
+        foreach (var turret in Turrets) //All the turrets shoots at the same time
+        {
+            turret.Shoot();
+        }
     }
 
     public void HandleMoveBody(Vector2 movementVector)
     {
-        this.movementVector = movementVector;
+        TankMover.Move(movementVector);
     }
 
     public void HandleTurretMovement(Vector2 pointerPosition)
     {
-        var turretDirection = (Vector3)pointerPosition - turretParent.position;
-
-        var desiredAngle = Mathf.Atan2(turretDirection.y, turretDirection.x) * Mathf.Rad2Deg;
-
-        var rotationStep = turretRotationSpeed * Time.deltaTime;
-
-        turretParent.rotation = Quaternion.RotateTowards(turretParent.rotation, Quaternion.Euler(0, 0, desiredAngle - 90), rotationStep);
+        TurretAim.Aim(pointerPosition);
     }
 
 
