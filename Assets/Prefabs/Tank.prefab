@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5097458491989623445}
   - component: {fileID: 8478725679715622462}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TankBaseVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 747256034701608077}
   - component: {fileID: 8083238541440838118}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TankBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5041337740061309866}
   - component: {fileID: 3874069753240869382}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TankTurretVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8607710500850929178}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3815545061665260486}
   - component: {fileID: 9222467222599135141}
-  m_Layer: 0
+  - component: {fileID: 3724417890878264116}
+  m_Layer: 7
   m_Name: Tank Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,6 +300,21 @@ MonoBehaviour:
   - {fileID: 8607710500850929178}
   bulletPrefab: {fileID: 3124313527074430989, guid: ee81bd0b3aee8e6418914bdea17285f5, type: 3}
   reloadDelay: 1
+--- !u!114 &3724417890878264116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4928167773170478532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37a520ca4c870f14db3407ae5bb90f62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnedObjectsParent: {fileID: 0}
+  objectToPool: {fileID: 0}
+  poolSize: 10
 --- !u!1 &5054890189367722990
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +328,7 @@ GameObject:
   - component: {fileID: 3170990403367664700}
   - component: {fileID: 713517202777622405}
   - component: {fileID: 3775843554508959769}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,9 +426,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90cf458541e40f24887a509789c4260d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TankMover: {fileID: 0}
-  TurretAim: {fileID: 0}
-  Turrets: []
 --- !u!114 &3775843554508959769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,7 +474,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6460134932589312026}
   - component: {fileID: 451326352485850176}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TankTurretParent
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}

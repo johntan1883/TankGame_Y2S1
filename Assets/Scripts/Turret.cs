@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ObjectPool))] //this attribute ensure that the component for ObjectPool exists
 public class Turret : MonoBehaviour
 {
     [SerializeField] private List<Transform> turretBarrels; //Store the data if there are multiple barrels
@@ -12,9 +13,18 @@ public class Turret : MonoBehaviour
     private Collider2D[] tankColliders; //To store the reference of the tank's colliders for the player
     private float currentDelay = 0f;
 
+    private ObjectPool bulletPool;
+    [SerializeField] private int bulletPoolCount = 10;
+
     private void Awake()
     {
         tankColliders = GetComponentsInParent<Collider2D>();
+        bulletPool = GetComponent<ObjectPool>();
+    }
+
+    private void Start()
+    {
+        bulletPool.Initialize(bulletPrefab, bulletPoolCount);
     }
 
     private void Update()
@@ -39,7 +49,8 @@ public class Turret : MonoBehaviour
 
             foreach (var barrel in turretBarrels)
             {
-                GameObject bullet = Instantiate(bulletPrefab); //Spawn bullet
+                //GameObject bullet = Instantiate(bulletPrefab); //Spawn bullet
+                GameObject bullet = bulletPool.CreateObject();//Spawning the bullet with the pool
                 bullet.transform.position = barrel.position;
                 bullet.transform.localRotation = barrel.rotation;
                 bullet.GetComponent<Bullet>().Initialize();
