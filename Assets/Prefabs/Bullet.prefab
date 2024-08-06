@@ -206,3 +206,4 @@ MonoBehaviour:
   speed: 10
   damage: 5
   maxDistance: 10
+  hitEffect: {fileID: 1498125853103185212, guid: 7200877b92632264fafd6d813753a360, type: 3}

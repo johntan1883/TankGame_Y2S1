@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private int damage = 5;
     [SerializeField] private float maxDistance = 10f;
+    [SerializeField] private ParticleSystem hitEffect;
 
     private Vector2 startPosition;
     private float conquaredDistance = 0f;
@@ -50,6 +51,17 @@ public class Bullet : MonoBehaviour
             damageable.Hit(damage);
         }
 
+        SpawnHitEffect();
         DisableObject();
+    }
+
+    private void SpawnHitEffect()
+    {
+        if (hitEffect != null)
+        {
+            ParticleSystem effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+            effect.Play();
+            Destroy(effect.gameObject, effect.main.duration); // Destroy the particle system after it finishes
+        }
     }
 }
