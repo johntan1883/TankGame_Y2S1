@@ -8,6 +8,7 @@ public class Turret : MonoBehaviour
     [SerializeField] private List<Transform> turretBarrels; //Store the data if there are multiple barrels
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float reloadDelay = 1f; //Cooldown for the shooting
+    [SerializeField] private TurretData turretData;
 
     private bool canShoot = true;
     private Collider2D[] tankColliders; //To store the reference of the tank's colliders for the player
@@ -24,7 +25,7 @@ public class Turret : MonoBehaviour
 
     private void Start()
     {
-        bulletPool.Initialize(bulletPrefab, bulletPoolCount);
+        bulletPool.Initialize(turretData.bulletPrefab, bulletPoolCount);
     }
 
     private void Update()
@@ -45,7 +46,7 @@ public class Turret : MonoBehaviour
         if (canShoot)
         {
             canShoot = false;
-            currentDelay = reloadDelay;
+            currentDelay = turretData.reloadDelay;
 
             foreach (var barrel in turretBarrels)
             {
@@ -53,7 +54,7 @@ public class Turret : MonoBehaviour
                 GameObject bullet = bulletPool.CreateObject();//Spawning the bullet with the pool
                 bullet.transform.position = barrel.position;
                 bullet.transform.localRotation = barrel.rotation;
-                bullet.GetComponent<Bullet>().Initialize();
+                bullet.GetComponent<Bullet>().Initialize(turretData.bulletData);
 
                 foreach (var collider in tankColliders)
                 {

@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private int damage = 5;
     [SerializeField] private float maxDistance = 10f;
+    [SerializeField] private BulletData bulletData;
+
     //[SerializeField] private ParticleSystem hitEffect;
 
     private Vector2 startPosition;
@@ -35,10 +37,11 @@ public class Bullet : MonoBehaviour
         gameObject.SetActive(false); //Disable the game object
     }
 
-    public void Initialize()
+    public void Initialize(BulletData bulletData)
     {
+        this.bulletData = bulletData;
         startPosition = transform.position; //Starting travel position for bullet
-        rb2d.velocity = transform.up * speed; //Travel speed for bullet
+        rb2d.velocity = transform.up * this.bulletData.speed; //Travel speed for bullet
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

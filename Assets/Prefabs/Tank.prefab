@@ -130,10 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2d: {fileID: 0}
-  maxMoveSpeed: 70
-  rotationSpeed: 100
-  accelaration: 70
-  deccelaration: 50
+  movementData: {fileID: 0}
 --- !u!1 &3152368547122615103
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,6 +297,8 @@ MonoBehaviour:
   - {fileID: 8607710500850929178}
   bulletPrefab: {fileID: 3124313527074430989, guid: ee81bd0b3aee8e6418914bdea17285f5, type: 3}
   reloadDelay: 1
+  turretData: {fileID: 11400000, guid: c891c280d782e0c41a783eb9dabd1a65, type: 2}
+  bulletPoolCount: 10
 --- !u!114 &3724417890878264116
 MonoBehaviour:
   m_ObjectHideFlags: 0
