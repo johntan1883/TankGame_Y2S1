@@ -15,8 +15,8 @@ TagManager:
   - Agent
   - Hitable
   - Obstacles
-  - 
-  - 
+  - Player
+  - Enemy
   - 
   - 
   - 
@@ -41,9 +41,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: DetailsBottom
+    uniqueID: 3552000045
+    locked: 0
+  - name: SmallTree & Branches
+    uniqueID: 732545887
+    locked: 0
   - name: Player
     uniqueID: 625558537
     locked: 0
+  - name: Tree
+    uniqueID: 3364762545
+    locked: 0
   - name: Bullet
     uniqueID: 4072892379
+    locked: 0
+  - name: SpecialEffects
+    uniqueID: 1282949523
+    locked: 0
+  - name: UI
+    uniqueID: 3365780087
     locked: 0

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TankMover : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class TankMover : MonoBehaviour
     private Vector2 movementVector;
     private float currentSpeed = 0f;
     private float currentForwardDirection = 1f; //To determine the last direction of the tank
+
+    public UnityEvent<float> OnSpeedChange = new UnityEvent<float>();
 
     private void Awake()
     {
@@ -30,12 +33,22 @@ public class TankMover : MonoBehaviour
 
         CalculateSpeed(movementVector);
 
+        OnSpeedChange?.Invoke(this.movementVector.magnitude); //passing the speed data to the event
+
         if (movementVector.y > 0)
         {
-            currentForwardDirection = 1; //Set the last direction of the tank, moving up
+            if (currentForwardDirection == -1)
+            {
+                currentSpeed = 0f;
+            }
+            currentForwardDirection = 1f;
         }
         else if (movementVector.y < 0)
         {
+            if (currentForwardDirection == 1) 
+            {
+                currentSpeed = 0f;
+            }
             currentForwardDirection = -1; //Moving down
         }
     }

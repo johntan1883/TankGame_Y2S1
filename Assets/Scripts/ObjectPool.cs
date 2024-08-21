@@ -6,6 +6,7 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
     public Transform spawnedObjectsParent; //An object to hold all the spawned objects under one parent in hierachy
+    public bool alwaysDestroy = false;
 
     [SerializeField] protected GameObject objectToPool; //The type of object to be pooled
     [SerializeField] protected int poolSize = 10;
@@ -73,7 +74,7 @@ public class ObjectPool : MonoBehaviour
             {
                 continue;
             }
-            else if (item.activeSelf == false) //if the object is disabled, we destroy the disabled bullet
+            else if (item.activeSelf == false || alwaysDestroy) //if the object is disabled, we destroy the disabled bullet
             {
                 Destroy(item);
             }

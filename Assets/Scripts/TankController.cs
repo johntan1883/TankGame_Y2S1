@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class TankController : MonoBehaviour
 {
-    private TankMover TankMover;
-    private TurretAim TurretAim;
+    public TurretAim TurretAim;
+    public TankMover TankMover;
+
     private Turret [] Turrets; //Using array allow the scenario when there are more than one turret on the tank to shoot at the same time
 
     

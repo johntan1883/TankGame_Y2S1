@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float speed = 10f;
+    public UnityEvent OnHit = new UnityEvent();
+
     [SerializeField] private int damage = 5;
     [SerializeField] private float maxDistance = 10f;
     [SerializeField] private BulletData bulletData;
@@ -47,7 +49,7 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Collided " + collision.name);
-
+        OnHit?.Invoke();
         var damageable = collision.GetComponent<Damageable>(); //To check if the collision is damageable
         if (damageable != null)
         {
